@@ -126,11 +126,11 @@ class PaymentInformation
     /**
      * Gets the sum of transactions
      *
-     * @return Money\Mixed Sum of transactions
+     * @return Money\MixedType Sum of transactions
      */
     public function getTransactionSum()
     {
-        $sum = new Money\Mixed(0);
+        $sum = new Money\MixedType(0);
 
         foreach ($this->transactions as $transaction) {
             $sum = $sum->plus($transaction->getAmount());

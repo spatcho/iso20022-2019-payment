@@ -29,7 +29,7 @@ class SEPACreditTransfer extends CreditTransfer
      * @param IBAN     $creditorIBAN     IBAN of the creditor
      * @param BIC|null $creditorAgentBIC BIC of the creditor's financial institution
      */
-    public function __construct($instructionId, $endToEndId, Money\EUR $amount, $creditorName, $creditorAddress, IBAN $creditorIBAN, BIC $creditorAgentBIC = null)
+    public function __construct($instructionId, $endToEndId, Money\Money $amount, $creditorName, $creditorAddress, IBAN $creditorIBAN, BIC $creditorAgentBIC = null)
     {
         parent::__construct($instructionId, $endToEndId, $amount, $creditorName, $creditorAddress);
 

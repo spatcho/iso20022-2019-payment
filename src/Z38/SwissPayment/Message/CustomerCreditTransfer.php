@@ -96,7 +96,7 @@ class CustomerCreditTransfer extends AbstractMessage
      */
     protected function getSchemaName()
     {
-        return 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03';
+        return 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.09';
     }
 
     /**
@@ -104,7 +104,7 @@ class CustomerCreditTransfer extends AbstractMessage
      */
     protected function getSchemaLocation()
     {
-        return 'pain.001.001.03.xsd';
+        return 'pain.001.001.09.xsd';
     }
 
     /**
@@ -127,7 +127,7 @@ class CustomerCreditTransfer extends AbstractMessage
         $header->appendChild(Text::xml($doc, 'CtrlSum', $transactionSum->format()));
         $initgParty = $doc->createElement('InitgPty');
         $initgParty->appendChild(Text::xml($doc, 'Nm', $this->initiatingParty));
-        $initgParty->appendChild($this->buildContactDetails($doc));
+        //$initgParty->appendChild($this->buildContactDetails($doc));
         $header->appendChild($initgParty);
         $root->appendChild($header);
 
@@ -158,7 +158,7 @@ class CustomerCreditTransfer extends AbstractMessage
         $header->appendChild(Text::xml($doc, 'CtrlSum', $transactionSum->format()));
         $initgParty = $doc->createElement('InitgPty');
         $initgParty->appendChild(Text::xml($doc, 'Nm', $this->initiatingParty));
-        $initgParty->appendChild($this->buildDNBContactDetails($doc));
+		$initgParty->appendChild($this->buildDNBContactDetails($doc));
         $header->appendChild($initgParty);
         $root->appendChild($header);
 

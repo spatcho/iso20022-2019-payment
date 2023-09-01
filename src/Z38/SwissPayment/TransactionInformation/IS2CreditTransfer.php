@@ -70,7 +70,7 @@ class IS2CreditTransfer extends CreditTransfer
         $creditorAgentIdOther->appendChild($doc->createElement('Id', $this->creditorAgentPostal->format()));
         $creditorAgentId->appendChild($creditorAgentIdOther);
         $creditorAgent->appendChild($creditorAgentId);
-        $root->appendChild($creditorAgent);
+        //$root->appendChild($creditorAgent);
 
         $root->appendChild($this->buildCreditor($doc));
 

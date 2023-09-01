@@ -86,7 +86,9 @@ class StructuredPostalAddress implements PostalAddressInterface
         }
         if ($this->buildingNo !== null) {
             $root->appendChild(Text::xml($doc, 'BldgNb', $this->buildingNo));
-        }
+        }else{
+            $root->appendChild(Text::xml($doc, 'BldgNb', '0'));
+		}
         $root->appendChild(Text::xml($doc, 'PstCd', $this->postCode));
         $root->appendChild(Text::xml($doc, 'TwnNm', $this->town));
         $root->appendChild(Text::xml($doc, 'Ctry', $this->country));

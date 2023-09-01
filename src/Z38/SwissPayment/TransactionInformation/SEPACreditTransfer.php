@@ -54,7 +54,7 @@ class SEPACreditTransfer extends CreditTransfer
         if ($this->creditorAgentBIC !== null) {
             $creditorAgent = $doc->createElement('CdtrAgt');
             $creditorAgent->appendChild($this->creditorAgentBIC->asDom($doc));
-            $root->appendChild($creditorAgent);
+            //$root->appendChild($creditorAgent);
         }
 
         $root->appendChild($this->buildCreditor($doc));

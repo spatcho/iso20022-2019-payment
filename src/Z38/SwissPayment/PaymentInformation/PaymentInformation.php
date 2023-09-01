@@ -250,7 +250,9 @@ class PaymentInformation
             $root->appendChild($paymentType);
         }
 
-        $root->appendChild($doc->createElement('ReqdExctnDt', $this->executionDate->format('Y-m-d')));
+		$ReqdExctnDt = $doc->createElement('ReqdExctnDt');
+		$ReqdExctnDt->appendChild($doc->createElement('Dt', $this->executionDate->format('Y-m-d')));
+        $root->appendChild($ReqdExctnDt);
 
         $debtor = $doc->createElement('Dbtr');
         $debtor->appendChild(Text::xml($doc, 'Nm', $this->debtorName));
@@ -264,7 +266,7 @@ class PaymentInformation
 
         $debtorAgent = $doc->createElement('DbtrAgt');
         $debtorAgent->appendChild($this->debtorAgent->asDom($doc));
-        $root->appendChild($debtorAgent);
+        //$root->appendChild($debtorAgent);
 
         foreach ($this->transactions as $transaction) {
             if ($this->hasPaymentTypeInformation()) {

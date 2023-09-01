@@ -56,7 +56,7 @@ class BankCreditTransferDNB extends CreditTransfer
 
         $creditorAgent = $doc->createElement('CdtrAgt');
         $creditorAgent->appendChild($this->creditorAgent->asDom($doc));
-        $root->appendChild($creditorAgent);
+        //$root->appendChild($creditorAgent);
 
         $root->appendChild($this->buildCreditor($doc));
 

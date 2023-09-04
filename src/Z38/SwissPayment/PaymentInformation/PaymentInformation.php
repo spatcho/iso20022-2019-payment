@@ -266,7 +266,7 @@ class PaymentInformation
 
         $debtorAgent = $doc->createElement('DbtrAgt');
         $debtorAgent->appendChild($this->debtorAgent->asDom($doc));
-        //$root->appendChild($debtorAgent);
+        $root->appendChild($debtorAgent);
 
         foreach ($this->transactions as $transaction) {
             if ($this->hasPaymentTypeInformation()) {

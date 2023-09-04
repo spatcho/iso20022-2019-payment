@@ -23,28 +23,18 @@ class BankCreditTransfer extends CreditTransfer
     protected $creditorIBAN;
 
     /**
-     * @var FinancialInstitutionInterface
-     */
-    protected $creditorAgent;
-
-    /**
      * {@inheritdoc}
      *
      * @param IBAN    $creditorIBAN  IBAN of the creditor
      * @param BIC|IID $creditorAgent BIC or IID of the creditor's financial institution
      *
-     * @throws \InvalidArgumentException When the amount is not in EUR or CHF or when the creditor agent is not BIC or IID.
+     * @throws \InvalidArgumentException When the amount is not in EUR or CHF.
      */
-    public function __construct($instructionId, $endToEndId, Money\Money $amount, $creditorName, $creditorAddress, AccountInterface $creditorAccount, FinancialInstitutionInterface $creditorAgent)
+    public function __construct($instructionId, $endToEndId, Money\Money $amount, $creditorName, $creditorAddress, AccountInterface $creditorAccount)
     {
-        if (!$creditorAgent instanceof BIC && !$creditorAgent instanceof IID) {
-            throw new InvalidArgumentException('The creditor agent must be an instance of BIC or IID.');
-        }
-
         parent::__construct($instructionId, $endToEndId, $amount, $creditorName, $creditorAddress);
 
         $this->creditorAccount = $creditorAccount;
-        $this->creditorAgent = $creditorAgent;
     }
 
     /**
@@ -53,10 +43,6 @@ class BankCreditTransfer extends CreditTransfer
     public function asDom(DOMDocument $doc, PaymentInformation $paymentInformation)
     {
         $root = $this->buildHeader($doc, $paymentInformation);
-
-        $creditorAgent = $doc->createElement('CdtrAgt');
-        $creditorAgent->appendChild($this->creditorAgent->asDom($doc));
-        //$root->appendChild($creditorAgent);
 
         $root->appendChild($this->buildCreditor($doc));
 
